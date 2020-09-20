@@ -1,0 +1,22 @@
+.main2 {
+  margin: 0 auto;
+  width: 100%;
+  background-color: black;
+  padding: 1em;
+  position: sticky;
+  top: 0;
+  text-align: center;
+}
+
+.main2 img {
+  height: 10vh;
+}
+
+.content {
+  padding-top: 1em;
+  width: 80vw;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}

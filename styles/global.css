@@ -1,0 +1,25 @@
+body{
+    background-color: white;
+    margin: 0;
+}
+.card {
+    width: 33vw;
+    border: solid  1px;
+    border-radius: 1em;
+    margin: 1em 0;
+    padding: 1em;
+}
+
+.a-div{
+    width: 100%;
+    text-align: center;
+}
+
+.a-para{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.a-para img{
+    display: block;
+    margin: 0 auto;
+}
