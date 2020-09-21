@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "preinstall": "yum install -y libpng-devel libjpeg-devel libwebp-tools libglvnd-glx libXi",
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
