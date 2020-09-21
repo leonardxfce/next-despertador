@@ -31,7 +31,7 @@ export const getStaticProps = async ({ params }) => {
   const data = x.data;
 
   const imageUrl = data.featured_image_urls.medium;
-  const pathUrl = imageUrl.substr(imageUrl.length - 50);
+  const pathUrl = imageUrl.substr(imageUrl.length - 15)
   const path = `public/${pathUrl}`;
   const path2 = path.replace("jpg", "webp");
   data.featured_image_urls.medium = "/" + pathUrl.replace("jpg", "webp");
