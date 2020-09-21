@@ -48,9 +48,9 @@ async function downloadImage(id, path, path2) {
     responseType: "stream",
   });
   response.data.pipe(writer);
-  webp.grant_permission();
-  const result = webp.cwebp(path, path2, "-q 80");
-  result.then((res) => console.log(res));
+  // webp.grant_permission();
+  // const result = webp.cwebp(path, path2, "-q 80");
+  // result.then((res) => console.log(res));
 
   return new Promise((resolve, reject) => {
     writer.on("finish", resolve);
