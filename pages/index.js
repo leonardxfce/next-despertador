@@ -4,14 +4,17 @@ import Layout from "../components/layout";
 
 export default ({ data }) => (
   <Layout>
-    {data.map(({ id, title, excerpt }) => (
+    {data.map(({ jetpack_featured_media_url, id, title, excerpt }) => (
       <article className="card" key={id}>
-        <Link href={`/posts/${id}`}>
-          <a>
-            <h3>{title.rendered}</h3>
-          </a>
-        </Link>
-        <div dangerouslySetInnerHTML={{ __html: excerpt.rendered }} />
+        <div>
+          <img src={jetpack_featured_media_url}></img>
+          <Link href={`/posts/${id}`}>
+            <a>
+              <h1>{title.rendered}</h1>
+            </a>
+          </Link>
+          <div dangerouslySetInnerHTML={{ __html: excerpt.rendered }} />
+        </div>
       </article>
     ))}
   </Layout>

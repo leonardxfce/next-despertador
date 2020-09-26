@@ -31,7 +31,7 @@ export const getStaticProps = async ({ params }) => {
   const data = x.data;
 
   const imageUrl = data.featured_image_urls.medium;
-  const pathUrl = imageUrl.substr(imageUrl.length - 15)
+  const pathUrl = imageUrl.substr(imageUrl.length - 15);
   const path = `public/${pathUrl}`;
   const path2 = path.replace("jpg", "webp");
   data.featured_image_urls.medium = "/" + pathUrl.replace("jpg", "webp");
@@ -48,12 +48,10 @@ async function downloadImage(id, path, path2) {
     responseType: "stream",
   });
   response.data.pipe(writer);
-  // webp.grant_permission();
-  // const result = webp.cwebp(path, path2, "-q 80");
-  // result.then((res) => console.log(res));
+  webp.grant_permission();
 
-  return new Promise((resolve, reject) => {
-    writer.on("finish", resolve);
-    writer.on("error", reject);
+  writer.on("finish", () => {
+    const result = webp.cwebp(path, path2, "-q 80");
+    result.then((res) => console.log(res));
   });
 }
