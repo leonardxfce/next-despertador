@@ -8,7 +8,7 @@ export default ({ data }) => (
       <article className="card" key={id}>
         <div>
           <img src={jetpack_featured_media_url} loading="lazy" />
-          <Link href={`/posts/${id}`}>
+          <Link as={`/posts/${id}`} href="/post/[id]">
             <a>
               <h1>{title.rendered}</h1>
             </a>
