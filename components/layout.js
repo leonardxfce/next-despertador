@@ -11,6 +11,7 @@ function Layout({ children }) {
           rel="icon"
           href="https://despertadorlavalle.com.ar/wp-content/uploads/2018/08/cropped-android-icon-192x192-32x32.png"
         />
+        <link rel="preload" as="image" href="https://despertadorlavalle.com.ar/wp-content/themes/miracleone64/img/bannernuevo.png"></link>
       </Head>
       <main className={styles.main2}>
         <Link href="/">
