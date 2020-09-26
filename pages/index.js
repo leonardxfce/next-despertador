@@ -7,7 +7,7 @@ export default ({ data }) => (
     {data.map(({ jetpack_featured_media_url, id, title, excerpt }) => (
       <article className="card" key={id}>
         <div>
-          <img src={jetpack_featured_media_url}></img>
+          <img src={jetpack_featured_media_url} loading="lazy" />
           <Link href={`/posts/${id}`}>
             <a>
               <h1>{title.rendered}</h1>
@@ -20,10 +20,11 @@ export default ({ data }) => (
   </Layout>
 );
 
-export const getStaticProps = async () => {
-  const x = await axios.get(
-    "http://despertadorlavalle.com.ar/wp-json/wp/v2/posts"
-  );
-  const data = x.data;
-  return { props: { data } };
-};
+export const getStaticProps = async () => ({
+  props: { data: await getWPProps() },
+});
+
+const getWPProps = async () => {
+  const x = await axios.get("http://despertadorlavalle.com.ar/wp-json/wp/v2/posts");
+  return x.data;
+}

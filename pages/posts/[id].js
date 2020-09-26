@@ -6,7 +6,7 @@ import webp from "webp-converter";
 export default ({ data: { content, featured_image_urls, title } }) => (
   <Layout>
     <div className="a-div">
-      <img src={featured_image_urls.medium} alt="Imagen" className="a-img" />
+      <img src={featured_image_urls.medium} alt="Imagen" className="a-img" loading="lazy"/>
     </div>
     <h1>{title.rendered}</h1>
     <div
@@ -16,13 +16,10 @@ export default ({ data: { content, featured_image_urls, title } }) => (
   </Layout>
 );
 
-export const getStaticPaths = async () => {
-  const x = await axios.get(
-    "http://despertadorlavalle.com.ar/wp-json/wp/v2/posts"
-  );
-  const paths = x.data.map(({ id }) => ({ params: { id: `${id}` } }));
-  return { paths, fallback: false };
-};
+export const getStaticPaths = async () => ({
+  paths: await fortmatPaths(),
+  fallback: false,
+});
 
 export const getStaticProps = async ({ params }) => {
   const x = await axios.get(
@@ -40,7 +37,15 @@ export const getStaticProps = async ({ params }) => {
   return { props: { data } };
 };
 
-async function downloadImage(id, path, path2) {
+const fortmatPaths = async () => {
+  const x = await axios.get(
+    "http://despertadorlavalle.com.ar/wp-json/wp/v2/posts"
+  );
+  const paths = x.data.map(({ id }) => ({ params: { id: `${id}` } }));
+  return paths;
+};
+
+const downloadImage = async (id, path, path2) => {
   const writer = Fs.createWriteStream(path);
   const response = await axios({
     url: id,
@@ -48,10 +53,13 @@ async function downloadImage(id, path, path2) {
     responseType: "stream",
   });
   response.data.pipe(writer);
+
   webp.grant_permission();
 
-  writer.on("finish", () => {
-    const result = webp.cwebp(path, path2, "-q 80");
-    result.then((res) => console.log(res));
-  });
-}
+  const convertAndDelete = async () => {
+    await webp.cwebp(path, path2, "-q 80");
+    Fs.unlinkSync(path);
+  };
+
+  writer.on("finish", convertAndDelete);
+};

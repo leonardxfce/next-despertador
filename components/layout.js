@@ -9,13 +9,13 @@ function Layout({ children }) {
         <title>Despertador Lavalle</title>
         <link
           rel="icon"
-          href="http://despertadorlavalle.com.ar/wp-content/uploads/2018/08/cropped-android-icon-192x192-32x32.png"
+          href="https://despertadorlavalle.com.ar/wp-content/uploads/2018/08/cropped-android-icon-192x192-32x32.png"
         />
       </Head>
       <main className={styles.main2}>
         <Link href="/">
           <a>
-            <img src="http://despertadorlavalle.com.ar/wp-content/themes/miracleone64/img/bannernuevo.png" />
+            <img src="https://despertadorlavalle.com.ar/wp-content/themes/miracleone64/img/bannernuevo.png" />
           </a>
         </Link>
       </main>
