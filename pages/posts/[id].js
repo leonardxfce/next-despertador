@@ -30,8 +30,8 @@ export const getStaticProps = async ({ params }) => {
   const imageUrl = data.featured_image_urls.medium;
   const pathUrl = imageUrl.substr(imageUrl.length - 15);
   const path = `public/${pathUrl}`;
-  const path2 = path.replace("jpg", "webp");
-  data.featured_image_urls.medium = "/" + pathUrl.replace("jpg", "webp");
+  const path2 = path.replace(/jpg|png/, "webp");
+  data.featured_image_urls.medium = "/" + pathUrl.replace(/jpg|png/, "webp");
   await downloadImage(imageUrl, path, path2);
 
   return { props: { data } };
